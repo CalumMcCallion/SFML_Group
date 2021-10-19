@@ -53,8 +53,8 @@ void graphPoints::loadPoints(std::string _fileName) {
             if (j == 1) points[i].setPosition(sf::Vector2f(points[i].getPosition().x + gap * 2, float(stoi(cords[i][j])) -25)); // y coordinate
         
             if (i % 50==0) {
-                if (j == 0) lines[i].setPosition(sf::Vector2f(float(stoi(cords[i][j]) + 25), 0)); // x coordinate +++++++++++++++++++++++++++ side note added 25 to cords
-                if (j == 1) lines[i].setPosition(sf::Vector2f(lines[i].getPosition().x + gap * 2, float(stoi(cords[0][0])))); // y coordinate
+                if (j == 0) lines[i].setPosition(sf::Vector2f(float(stoi(cords[i][j]) + 25), 0)); // x coordinate for lines
+                if (j == 1) lines[i].setPosition(sf::Vector2f(lines[i].getPosition().x + gap * 2, float(stoi(cords[0][0])))); // y coordinate for lines
             }
         }
         
