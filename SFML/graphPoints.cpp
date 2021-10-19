@@ -46,11 +46,18 @@ void graphPoints::loadPoints(std::string _fileName) {
     for (int i = 0; i < cords.size(); ++i) // for number of rows (300 in this example)
     {
         addPoint(sf::Color(255, 0, 0), 1, sf::Vector2u(1, 1), sf::Vector2f(0, 0));
+        addLineY(sf::Color(0, 0, 255), 1, sf::Vector2u(0, -25 ), sf::Vector2f(0, 25));
         for (int j = 0; j < cords[j].size(); ++j) // for number of columns (2)
         {
-            if (j == 0) points[i].setPosition(sf::Vector2f(float(stoi(cords[i][j])), 0)); // x coordinate 
-            if (j == 1) points[i].setPosition(sf::Vector2f(points[i].getPosition().x + gap * i, float(stoi(cords[i][j])))); // y coordinate
+            if (j == 0) points[i].setPosition(sf::Vector2f(float(stoi(cords[i][j])+25), 0)); // x coordinate +++++++++++++++++++++++++++ side note added 25 to cords
+            if (j == 1) points[i].setPosition(sf::Vector2f(points[i].getPosition().x + gap * 2, float(stoi(cords[i][j])) -25)); // y coordinate
+        
+            if (i % 50==0) {
+                if (j == 0) lines[i].setPosition(sf::Vector2f(float(stoi(cords[i][j]) + 25), 0)); // x coordinate +++++++++++++++++++++++++++ side note added 25 to cords
+                if (j == 1) lines[i].setPosition(sf::Vector2f(lines[i].getPosition().x + gap * 2, float(stoi(cords[0][0])))); // y coordinate
+            }
         }
+        
     }
 #pragma endregion
   
@@ -60,6 +67,13 @@ void graphPoints::addPoint(sf::Color clr, int radius, sf::Vector2u origin, sf::V
     
     points.push_back(pt);
 };
+
+
+void graphPoints::addLineY(sf::Color clr, int radius, sf::Vector2u origin, sf::Vector2f position) {
+    sf::RectangleShape pR; pR.setFillColor(clr); pR.setSize(sf::Vector2f(1, 60)); pR.setOrigin(radius, radius); pR.setPosition(position);
+
+    lines.push_back(pR);
+};
 void graphPoints::setPointColor(int index, sf::Color _color) {};
 void graphPoints::clearPointList() {};
 
@@ -67,5 +81,7 @@ void graphPoints::drawPoints(sf::RenderWindow &_win) {
     for (int i = 0; i < points.size(); ++i)
     {
         _win.draw(points[i]);
+        _win.draw(lines[i]);
+        
     }
 };

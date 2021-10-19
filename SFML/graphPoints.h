@@ -6,7 +6,9 @@ class graphPoints
 private:
 	std::vector<sf::CircleShape> points;
 	std::vector<std::vector<std::string> > cords;
-	int gap = 4;
+	std::vector<sf::RectangleShape>lines;
+
+	int gap = 1;
 public:
 
 	graphPoints();
@@ -17,6 +19,7 @@ public:
 	void setPointColor(int index, sf::Color _color);
 	void clearPointList();
 	void drawPoints(sf::RenderWindow &_win);
+	void addLineY(sf::Color clr, int radius, sf::Vector2u origin, sf::Vector2f position);
 
 };
 

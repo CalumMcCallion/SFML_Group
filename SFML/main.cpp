@@ -11,7 +11,7 @@
 int main()
 {
 #pragma region Window Creation
-    sf::RenderWindow window(sf::VideoMode(1200, 800), "Plot Points!", sf::Style::Default, sf::ContextSettings(24));   // render a Window
+    sf::RenderWindow window(sf::VideoMode(329, 75), "Plot Points!", sf::Style::Default, sf::ContextSettings(24));   // render a Window
     window.setVerticalSyncEnabled(true);
     sf::Vector2u winSize = window.getSize();
 #pragma endregion
@@ -26,6 +26,8 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
+
+
 
 #pragma endregion
         
