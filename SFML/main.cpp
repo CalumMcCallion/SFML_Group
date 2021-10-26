@@ -11,7 +11,7 @@
 int main()
 {
 #pragma region Window Creation
-    sf::RenderWindow window(sf::VideoMode(329, 75), "Plot Points!", sf::Style::Default, sf::ContextSettings(24));   // render a Window
+    sf::RenderWindow window(sf::VideoMode(350, 100), "Plot Points!", sf::Style::Default, sf::ContextSettings(24));   // render a Window
     window.setVerticalSyncEnabled(true);
     std::vector<sf::Text> numTxt;
     sf::Text text;
@@ -46,17 +46,18 @@ int main()
 
         int num = 50;
         int pos = 69;
+        // time labels
         for (int i = 0; i < 5; i++) {
             numTxt.push_back(text);
             text.setFont(font);   text.setCharacterSize(9);  text.setFillColor(sf::Color::Red); text.setStyle(sf::Text::Bold | sf::Text::Underlined);
             text.setString(std::to_string(num));
-            text.setPosition(pos, 66);
+            text.setPosition(pos, 70);
             num = num + 50;
             pos = pos + 50;
         }
-       
         num = 10;
         pos = 57;
+        // number of beats label 
          for(int i = 5; i < 14; i++) {
             numTxt.push_back(text);
             text.setFont(font);   text.setCharacterSize(7);  text.setFillColor(sf::Color::Red); text.setStyle(sf::Text::Bold | sf::Text::Underlined);
@@ -66,9 +67,12 @@ int main()
             pos = pos - 7.5;
         }
          
-         text.setFont(font);   text.setCharacterSize(10);  text.setFillColor(sf::Color::Red); text.setStyle(sf::Text::Bold | sf::Text::Underlined); text.setString("HeartRate"); text.setPosition(150, 0);
+         text.setFont(font);   text.setCharacterSize(10);  text.setFillColor(sf::Color::Red); text.setStyle(sf::Text::Bold | sf::Text::Underlined); text.setString("HeartRate over time"); text.setPosition(100, -3);
          numTxt.push_back(text);
-
+         text.setFont(font);   text.setCharacterSize(10);  text.setFillColor(sf::Color::Red); text.setStyle(sf::Text::Bold | sf::Text::Underlined); text.setString("time in seconds"); text.setPosition(130, 80);
+         numTxt.push_back(text);
+         text.setFont(font);   text.setCharacterSize(9);  text.setFillColor(sf::Color::Red); text.setStyle(sf::Text::Bold | sf::Text::Underlined); text.setString("H\ne\na\nr\nt\nR\na\nt\ne"); text.setPosition(1, 1);
+         numTxt.push_back(text);
         
 
 #pragma endregion
@@ -77,7 +81,7 @@ int main()
         window.clear(sf::Color(255, 255, 255));
         graphPts.drawPoints(window);                                    // Call draw function in my class
         
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 17; i++) {
             window.draw(numTxt[i]);
         }
         

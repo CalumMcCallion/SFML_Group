@@ -63,7 +63,7 @@ void graphPoints::loadPoints(std::string _fileName) {
     for (int i = 0; i < cords.size(); ++i) // for number of rows (300 in this example)
     {
 
-        addAnchor(sf::Color(255, 0, 0), 0.5, sf::Vector2u(1, 1), sf::Vector2f(329, 75));
+        addAnchor(sf::Color(255, 255, 255), 0.5, sf::Vector2u(1, 1), sf::Vector2f(329, 75));
         addPoint(sf::Color(color), 0.5, sf::Vector2u(1, 1), sf::Vector2f(0, 0));
         addLineY(sf::Color(0, 0, 0), 1, sf::Vector2u(0, -25 ), sf::Vector2f(0, 25));
         addLineX(sf::Color(0, 0, 0), 0, sf::Vector2u(1, 1), sf::Vector2f(28, 60));
@@ -71,19 +71,17 @@ void graphPoints::loadPoints(std::string _fileName) {
         for (int j = 0; j < cords[j].size(); ++j) // for number of columns (2)
         {
             sf::Vector2f position = A[0].getPosition();
+            // filpping 
             temp =   position.y-float(stoi(cords[i][j]));
-        //  std::reverse(cords.begin(), cords.end());
+        
             if (j == 0)  points[i].setPosition(sf::Vector2f(float(stoi(cords[i][j]) + 25), 0)); // x coordinate +++++++++++++++++++++++++++ side note added 25 to cords
-          //std::reverse(cords.begin(), cords.end());
             if (j == 1) points[i].setPosition(sf::Vector2f(points[i].getPosition().x + gap * 2, temp+10)); // y coordinate
         
             if (i % 50==0) {
                 if (j == 0) lines[i].setPosition(sf::Vector2f(float(stoi(cords[i][j]) + 25), 0)); // x coordinate for lines
-                if (j == 1) lines[i].setPosition(sf::Vector2f(lines[i].getPosition().x + gap * 2, float(stoi(cords[0][0])))); // y coordinate for lines
+                if (j == 1) lines[i].setPosition(sf::Vector2f(lines[i].getPosition().x + gap * 2, float(stoi(cords[0][0])+5))); // y coordinate for lines
             }
-            // 121 = 50y, 6 = 60y , 78= 70;
-            // 178  293  221
-            // x = 23,
+         
         }
         
     }
@@ -136,5 +134,5 @@ void graphPoints::drawPoints(sf::RenderWindow &_win) {
     }
    
     
-   // _win.draw(Background[0]);
+   
 };
