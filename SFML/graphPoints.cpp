@@ -46,8 +46,7 @@ void graphPoints::loadPoints(std::string _fileName) {
 #pragma endregion
 
 #pragma region Create Graph points 
-    // add an SFML circle object (as a graph point) to our points vector list
-// set positions of graph points from point co-ordinates loaded in from CSV file
+    // uses the letter from the cin and gets the corrasponding colour 
     sf::Color color(0, 0, 0);
     if (co == 'R') {
         color.r = 255;
@@ -58,33 +57,33 @@ void graphPoints::loadPoints(std::string _fileName) {
     else {
         color.b = 255;
     }
-    
-    
+
+    // add an SFML circle object (as a graph point) to our points vector list
+// set positions of graph points from point co-ordinates loaded in from CSV file
     for (int i = 0; i < cords.size(); ++i) // for number of rows (300 in this example)
     {
 
         addAnchor(sf::Color(255, 255, 255), 0.5, sf::Vector2u(1, 1), sf::Vector2f(329, 75));
         addPoint(sf::Color(color), 0.5, sf::Vector2u(1, 1), sf::Vector2f(0, 0));
         addLineY(sf::Color(0, 0, 0), 1, sf::Vector2u(0, -25 ), sf::Vector2f(0, 25));
-        addLineX(sf::Color(0, 0, 0), 0, sf::Vector2u(1, 1), sf::Vector2f(28, 60));
+        addLineX(sf::Color(0, 0, 0), 0, sf::Vector2u(1, 1), sf::Vector2f(400, 60));
         
         for (int j = 0; j < cords[j].size(); ++j) // for number of columns (2)
         {
             sf::Vector2f position = A[0].getPosition();
-            // filpping 
+            // flipping the y position
             temp =   position.y-float(stoi(cords[i][j]));
-        
+            //adds dots
             if (j == 0)  points[i].setPosition(sf::Vector2f(float(stoi(cords[i][j]) + 25), 0)); // x coordinate +++++++++++++++++++++++++++ side note added 25 to cords
             if (j == 1) points[i].setPosition(sf::Vector2f(points[i].getPosition().x + gap * 2, temp+10)); // y coordinate
-        
+            // adds y grids based on 
             if (i % 50==0) {
                 if (j == 0) lines[i].setPosition(sf::Vector2f(float(stoi(cords[i][j]) + 25), 0)); // x coordinate for lines
                 if (j == 1) lines[i].setPosition(sf::Vector2f(lines[i].getPosition().x + gap * 2, float(stoi(cords[0][0])+5))); // y coordinate for lines
             }
-         
         }
-        
     }
+    //adds X grids
     for (int i = 0; i < 9; i++) {
         linesX[i].setPosition(sf::Vector2f(28, poss)); // y coordinate for lines
         poss = poss + 7.5;
@@ -101,7 +100,7 @@ void graphPoints::addPoint(sf::Color clr, float radius, sf::Vector2u origin, sf:
 
 // adds the Y lines to the graph
 void graphPoints::addLineY(sf::Color clr, int radius, sf::Vector2u origin, sf::Vector2f position) {
-    sf::RectangleShape pR; pR.setFillColor(clr); pR.setSize(sf::Vector2f(1, 68)); pR.setOrigin(radius, radius); pR.setPosition(position);
+    sf::RectangleShape pR; pR.setFillColor(clr); pR.setSize(sf::Vector2f(1, 65)); pR.setOrigin(radius, radius); pR.setPosition(position);
 
     lines.push_back(pR);
 };
@@ -111,7 +110,7 @@ void graphPoints::addLineX(sf::Color clr, int radius, sf::Vector2u origin, sf::V
 
     linesX.push_back(pR);
 };
-
+// adds an anchor to use to take away the y co  
 void graphPoints::addAnchor(sf::Color clr, float radius, sf::Vector2u origin, sf::Vector2f position) {
     sf::CircleShape pt; pt.setFillColor(clr); pt.setRadius(radius); pt.setOrigin(radius, radius); pt.setPosition(position);
 

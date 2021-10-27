@@ -24,7 +24,7 @@ int main()
 #pragma endregion
     graphPoints graphPts;                                               // create an instance of my point plotting class
    
-
+    //loads the file
     graphPts.loadPoints("HeartRate.csv");
     while (window.isOpen())                                             // This is the Windows application loop - infinite loop until closed
     {
@@ -39,14 +39,14 @@ int main()
 
         }
         window.clear(sf::Color(255, 0, 0));
+        //loads the font
         if (!font.loadFromFile("arial.ttf"))
         {
             // error...
         }
-
         int num = 50;
         int pos = 69;
-        // time labels
+        // time labels assigned to vector
         for (int i = 0; i < 5; i++) {
             numTxt.push_back(text);
             text.setFont(font);   text.setCharacterSize(9);  text.setFillColor(sf::Color::Red); text.setStyle(sf::Text::Bold | sf::Text::Underlined);
@@ -57,19 +57,20 @@ int main()
         }
         num = 10;
         pos = 57;
-        // number of beats label 
+        // number of beats label assigned to vector
          for(int i = 5; i < 14; i++) {
             numTxt.push_back(text);
-            text.setFont(font);   text.setCharacterSize(7);  text.setFillColor(sf::Color::Red); text.setStyle(sf::Text::Bold | sf::Text::Underlined);
+            text.setFont(font);   text.setCharacterSize(7.5);  text.setFillColor(sf::Color::Red); text.setStyle(sf::Text::Bold | sf::Text::Underlined);
             text.setString(std::to_string(num));
             text.setPosition(15, pos);
             num = num + 10;
             pos = pos - 7.5;
         }
          
-         text.setFont(font);   text.setCharacterSize(10);  text.setFillColor(sf::Color::Red); text.setStyle(sf::Text::Bold | sf::Text::Underlined); text.setString("HeartRate over time"); text.setPosition(100, -3);
+         // other worded label
+         text.setFont(font);   text.setCharacterSize(10);  text.setFillColor(sf::Color::Red); text.setStyle(sf::Text::Bold | sf::Text::Underlined); text.setString("HeartRate over time"); text.setPosition(117, -3);
          numTxt.push_back(text);
-         text.setFont(font);   text.setCharacterSize(10);  text.setFillColor(sf::Color::Red); text.setStyle(sf::Text::Bold | sf::Text::Underlined); text.setString("time in seconds"); text.setPosition(130, 80);
+         text.setFont(font);   text.setCharacterSize(12);  text.setFillColor(sf::Color::Red); text.setStyle(sf::Text::Bold | sf::Text::Underlined); text.setString("time in seconds"); text.setPosition(130, 80);
          numTxt.push_back(text);
          text.setFont(font);   text.setCharacterSize(9);  text.setFillColor(sf::Color::Red); text.setStyle(sf::Text::Bold | sf::Text::Underlined); text.setString("H\ne\na\nr\nt\nR\na\nt\ne"); text.setPosition(1, 1);
          numTxt.push_back(text);
@@ -78,14 +79,13 @@ int main()
 #pragma endregion
         
         window.clear();                                                 // Clear graphics buffer
-        window.clear(sf::Color(255, 255, 255));
+        window.clear(sf::Color(255, 255, 255));                         // create a white background
         graphPts.drawPoints(window);                                    // Call draw function in my class
         
+        // Display the graphics for the text 
         for (int i = 0; i < 17; i++) {
             window.draw(numTxt[i]);
         }
-        
-        
         window.display();                                               // Display the graphics from the buffer to the display
 
        
