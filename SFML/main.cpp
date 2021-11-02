@@ -1,97 +1,89 @@
-/*
-* An SFML application - Darryl Charles
-* SFML Documentation https://www.sfml-dev.org/documentation/2.5.1/
-* SFML Shapes Tutorials https://www.sfml-dev.org/tutorials/2.5/graphics-shape.php
-* SGML Graphics tutorial https://gamefromscratch.com/sfml-c-tutorial-basic-graphics/
-*/
-#include <iostream>                                                     // std namespace
-#include <SFML/Graphics.hpp>                                            // sf namespace 
-#include "graphPoints.h"
+#include <SFML/Graphics.hpp>
+#include <cstdlib>
+#include <ctime>
+#include <SFML/Audio.hpp>
+#include <string>
+#include <iostream> 
 
 int main()
 {
-#pragma region Window Creation
-    sf::RenderWindow window(sf::VideoMode(350, 100), "Plot Points!", sf::Style::Default, sf::ContextSettings(24));   // render a Window
-    window.setVerticalSyncEnabled(true);
-    std::vector<sf::Text> numTxt;
-    sf::Text text;
-    sf::Font font;
-   
+    // set the width and height so i can grab them vaules later
+    int width = 1500;
+    int height = 900;
+    sf::RenderWindow window(sf::VideoMode(width, height), "reaction Game", sf::Style::Default);
 
-    sf::Vector2u winSize = window.getSize();
-    
-    
-#pragma endregion
-    graphPoints graphPts;                                               // create an instance of my point plotting class
-   
-    //loads the file
-    graphPts.loadPoints("HeartRate.csv");
-    while (window.isOpen())                                             // This is the Windows application loop - infinite loop until closed
+
+
+    sf::Clock clock; // starts the clock
+    sf::Texture Button;
+    sf::Sprite ButtonImage;
+    // grabbing an image for the button
+    if (!Button.loadFromFile("target1.png"))
+        std::cout << "Can't find the image" << std::endl;
+    ButtonImage.setPosition(50.0f, 500.0f);
+
+    //setting the buttons size based of the size of the image
+    float ButtonWidth = ButtonImage.getLocalBounds().width;
+    float ButtonHeight = ButtonImage.getLocalBounds().height;
+
+    ButtonImage.setTexture(Button);
+
+    // creating thew see for the radom number generater
+    srand(time(NULL));
+    while (window.isOpen())
     {
-
-#pragma region Check for Exit
-        sf::Event event;                                                // Windows is event driven - so check for events
-        while (window.pollEvent(event))
+        sf::Event Event;
+        while (window.pollEvent(Event))
         {
-            
-            if (event.type == sf::Event::Closed)
+            switch (Event.type)
+            {
+            case sf::Event::Closed:
                 window.close();
+                break;
+            case sf::Event::MouseMoved:
+            {
+                // getting pos of mouse
+                sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                // changing the pos to be a Vector2f not a Vector2i
+                sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
 
+                //if button isn't hovered over have it be white while hover be red (for testing if the bounderys are created can be removed later)
+                if (ButtonImage.getGlobalBounds().contains(mousePosF))
+                {
+                    ButtonImage.setColor(sf::Color(250, 20, 20));
+                }
+                else
+                {
+                    ButtonImage.setColor(sf::Color(255, 255, 255));
+                }
+            }
+            break;
+            case sf::Event::MouseButtonPressed:
+            {
+                sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+                if (ButtonImage.getGlobalBounds().contains(mousePosF))
+                {
+                    //grabing time and resting the time to test the rection speed of each reaction 
+                    sf::Time elapsed1 = clock.getElapsedTime();
+                    std::cout << elapsed1.asSeconds() << std::endl;
+                    clock.restart();
+                    // prints out to the user they got a point (can be changed later)
+                    std::cout << "one point" << std::endl;
+                    // generating new x and y pos 
+                    float randNumX = rand() % ((width- 200) - 50 + 1) + 50;
+                    float randNumY = rand() % ((height-200) - 50 + 1) + 50;
+                    //changes pos of button
+                    ButtonImage.setPosition(randNumX, randNumY);
+                }
+            }
+            break;
+            }
         }
-        window.clear(sf::Color(255, 0, 0));
-        //loads the font
-        if (!font.loadFromFile("arial.ttf"))
-        {
-            // error...
-        }
-        int num = 50;
-        int pos = 69;
-        // time labels assigned to vector
-        for (int i = 0; i < 5; i++) {
-            numTxt.push_back(text);
-            text.setFont(font);   text.setCharacterSize(9);  text.setFillColor(sf::Color::Red); text.setStyle(sf::Text::Bold | sf::Text::Underlined);
-            text.setString(std::to_string(num));
-            text.setPosition(pos, 70);
-            num = num + 50;
-            pos = pos + 50;
-        }
-        num = 10;
-        pos = 57;
-        // number of beats label assigned to vector
-         for(int i = 5; i < 14; i++) {
-            numTxt.push_back(text);
-            text.setFont(font);   text.setCharacterSize(7.5);  text.setFillColor(sf::Color::Red); text.setStyle(sf::Text::Bold | sf::Text::Underlined);
-            text.setString(std::to_string(num));
-            text.setPosition(15, pos);
-            num = num + 10;
-            pos = pos - 7.5;
-        }
-         
-         // other worded label
-         text.setFont(font);   text.setCharacterSize(10);  text.setFillColor(sf::Color::Red); text.setStyle(sf::Text::Bold | sf::Text::Underlined); text.setString("HeartRate over time"); text.setPosition(117, -3);
-         numTxt.push_back(text);
-         text.setFont(font);   text.setCharacterSize(12);  text.setFillColor(sf::Color::Red); text.setStyle(sf::Text::Bold | sf::Text::Underlined); text.setString("time in seconds"); text.setPosition(130, 80);
-         numTxt.push_back(text);
-         text.setFont(font);   text.setCharacterSize(9);  text.setFillColor(sf::Color::Red); text.setStyle(sf::Text::Bold | sf::Text::Underlined); text.setString("H\ne\na\nr\nt\nR\na\nt\ne"); text.setPosition(1, 1);
-         numTxt.push_back(text);
-        
 
-#pragma endregion
-        
-        window.clear();                                                 // Clear graphics buffer
-        window.clear(sf::Color(255, 255, 255));                         // create a white background
-        graphPts.drawPoints(window);                                    // Call draw function in my class
-        
-        // Display the graphics for the text 
-        for (int i = 0; i < 17; i++) {
-            window.draw(numTxt[i]);
-        }
-        window.display();                                               // Display the graphics from the buffer to the display
-
-       
-
-
+        window.clear();
+        window.draw(ButtonImage);
+        window.display();
     }
-
     return 0;
 }

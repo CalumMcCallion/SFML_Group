@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\SFML"
   ],
-  "SelectedNode": "\\SFML_grphx.sln",
+  "SelectedNode": "\\SFML\\graphPoints.cpp",
   "PreviewInSolutionExplorer": false
 }
