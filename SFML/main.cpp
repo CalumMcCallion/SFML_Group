@@ -15,6 +15,7 @@ int main()
     Reaction reaction;
     reaction.createButton("target1.png");
     reaction.createbackground("background.png");
+    reaction.createFakeButton("faketarget.png");
     // creating the see for the radom number generater
     srand(time(NULL));
     while (window.isOpen())
@@ -39,10 +40,28 @@ int main()
             }
             break;
             }
+            if (reaction.count == 20) {
+                reaction.elapsed2 = reaction.clock1.getElapsedTime();
+                const float time = reaction.elapsed2.asSeconds();
+                reaction.text.setFont(reaction.font);   reaction.text.setCharacterSize(25);  reaction.text.setFillColor(sf::Color::Black); reaction.text.setStyle(sf::Text::Bold | sf::Text::Underlined);
+                reaction.text.setString(std::to_string(reaction.points) + "\n" + std::to_string(time));
+                reaction.text.setPosition(850, 350);
+            }
+            if (!reaction.font.loadFromFile("arial.ttf"))
+            {
+                // error...
+            }
+            
+            
         }
+
+        
+
         window.clear();
         reaction.drawgame(window);
+        window.draw(reaction.text);
         window.display();
+
     }
     return 0;
 }
