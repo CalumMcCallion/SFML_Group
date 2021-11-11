@@ -18,8 +18,8 @@ void Reaction::creacteEndText(float time) {
     {
         // error...
     }
-    text.setFont(font);   text.setCharacterSize(9);  text.setFillColor(sf::Color::Black); text.setStyle(sf::Text::Bold | sf::Text::Underlined);
-    text.setString(std::to_string(points)+ "\n" + std::to_string(time));
+    text.setFont(font);   text.setCharacterSize(30);  text.setFillColor(sf::Color::Black); text.setStyle(sf::Text::Bold | sf::Text::Underlined);
+    text.setString("points: " + std::to_string(points) + "\n" + "timer: " + std::to_string(time));
     text.setPosition(850, 350);
 };
 
@@ -58,55 +58,59 @@ void Reaction::mouseMoved(sf::RenderWindow& _win) {
 
 void Reaction::mouseButtonPressed(sf::RenderWindow& _win) {
 
-    if (count != 20) {
+    if (count != 20 && flag == true) {
 
-    
-    sf::Vector2i mousePos = sf::Mouse::getPosition(_win);
-    sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
-    if (count % 4 == 0) {
-        float randNumX = rand() % ((width - 200) - 50 + 1) + 50;
-        float randNumY = rand() % ((height - 200) - 50 + 1) + 50;
-        fakeButtonImage.setPosition(randNumX, randNumY);
+
+        sf::Vector2i mousePos = sf::Mouse::getPosition(_win);
+        sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+        if (count % 4 == 0) {
+            float randNumX = rand() % ((width - 200) - 50 + 1) + 50;
+            float randNumY = rand() % ((height - 200) - 50 + 1) + 50;
+            fakeButtonImage.setPosition(randNumX, randNumY);
+        }
+        else {
+            fakeButtonImage.setPosition(-100, -100);
+        }
+
+        if (fakeButtonImage.getGlobalBounds().contains(mousePosF))
+        {
+            points = points - 1;
+        }
+
+
+
+        if (ButtonImage.getGlobalBounds().contains(mousePosF))
+        {
+
+
+            //grabing time and resting the time to test the rection speed of each reaction 
+            sf::Time elapsed1 = clock.getElapsedTime();
+            std::cout << elapsed1.asSeconds() << std::endl;
+            clock.restart();
+            // generating new x and y pos 
+            float randNumX = rand() % ((width - 200) - 50 + 1) + 50;
+            float randNumY = rand() % ((height - 200) - 50 + 1) + 50;
+            //changes pos of button
+            ButtonImage.setPosition(randNumX, randNumY);
+
+
+            points = points + 1;
+
+        }
     }
     else {
-        fakeButtonImage.setPosition(-100, -100);
+        if (flag == true) {
+            ButtonImage.setPosition(-100, -100);
+            sf::Time elapsed2 = clock1.getElapsedTime();
+            creacteEndText(elapsed2.asSeconds());
+            std::cout << "time elapsed: " << elapsed2.asSeconds() << std::endl;
+            std::cout << "no. of points: " << points << std::endl;
+            _win.draw(text);
+            flag = false;
+        }
     }
 
-    if (fakeButtonImage.getGlobalBounds().contains(mousePosF))
-    {
-        points = points - 1;
-    }
-
-
-
-    if (ButtonImage.getGlobalBounds().contains(mousePosF))
-    {
-
-
-        //grabing time and resting the time to test the rection speed of each reaction 
-        sf::Time elapsed1 = clock.getElapsedTime();
-        std::cout << elapsed1.asSeconds() << std::endl;
-        clock.restart();
-        // generating new x and y pos 
-        float randNumX = rand() % ((width - 200) - 50 + 1) + 50;
-        float randNumY = rand() % ((height - 200) - 50 + 1) + 50;
-        //changes pos of button
-        ButtonImage.setPosition(randNumX, randNumY);
-
-        count = count + 1;
-        points = points + 1;
-        
-    }
-    }else{
-        ButtonImage.setPosition(-100, -100);
-        sf::Time elapsed2 = clock1.getElapsedTime();
-        creacteEndText(elapsed2.asSeconds());
-        std::cout << "time elapsed: " << elapsed2.asSeconds() << std::endl;
-        std::cout << "no. of points: " << points << std::endl;
-        _win.draw(text);
-    }
-    
-    
+    count = count + 1;
 };
 
 

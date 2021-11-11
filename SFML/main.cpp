@@ -11,6 +11,7 @@ int main()
     // set the width and height so i can grab them vaules later
     int width = 1700;
     int height = 703;
+
     sf::RenderWindow window(sf::VideoMode(width, height), "reaction Game", sf::Style::Default);
     Reaction reaction;
     reaction.createButton("target1.png");
@@ -40,22 +41,16 @@ int main()
             }
             break;
             }
-            if (reaction.count == 20) {
-                reaction.elapsed2 = reaction.clock1.getElapsedTime();
-                const float time = reaction.elapsed2.asSeconds();
-                reaction.text.setFont(reaction.font);   reaction.text.setCharacterSize(25);  reaction.text.setFillColor(sf::Color::Black); reaction.text.setStyle(sf::Text::Bold | sf::Text::Underlined);
-                reaction.text.setString(std::to_string(reaction.points) + "\n" + std::to_string(time));
-                reaction.text.setPosition(850, 350);
-            }
+
             if (!reaction.font.loadFromFile("arial.ttf"))
             {
                 // error...
             }
-            
-            
+
+
         }
 
-        
+
 
         window.clear();
         reaction.drawgame(window);

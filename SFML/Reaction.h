@@ -20,7 +20,7 @@ private:
 	sf::Sprite backgroundImage;
 	
 	sf::Event Event;
-
+	bool flag = true;
 	int width = 1700;
 	int height = 703;
 	
