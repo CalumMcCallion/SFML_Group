@@ -92,10 +92,10 @@ void Reaction::startGame(){
     loadBackgroundMusic("Mr Smith - Americana.wav");
     PlayMusic();
     LoadSound("gunshot.wav");
-
+    clock.restart();
 }
 
-//-------------------------------------- mouse funtions---------------------------------------------------
+//-------------------------------------- mouse move funtions---------------------------------------------------
 void Reaction::mouseMoved(sf::RenderWindow& _win) {
     // getting pos of mouse
     sf::Vector2i mousePos = sf::Mouse::getPosition(_win);
@@ -113,7 +113,7 @@ void Reaction::mouseMoved(sf::RenderWindow& _win) {
     }
 
 };
-
+//-------------------------------------- mouse click funtions---------------------------------------------------
 void Reaction::mouseButtonPressed(sf::RenderWindow& _win) {
 
     if (count != 21 && flag == true) {
@@ -121,6 +121,7 @@ void Reaction::mouseButtonPressed(sf::RenderWindow& _win) {
 
         sf::Vector2i mousePos = sf::Mouse::getPosition(_win);
         sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+        // fake button so if hit take away point
         if (count % 4 == 0) {
             float randNumX = rand() % ((width - 200) - 50 + 1) + 50;
             float randNumY = rand() % ((height - 200) - 50 + 1) + 50;
@@ -136,7 +137,7 @@ void Reaction::mouseButtonPressed(sf::RenderWindow& _win) {
         }
 
 
-
+        // real target when hit add point
         if (ButtonImage.getGlobalBounds().contains(mousePosF))
         {
 
@@ -157,6 +158,7 @@ void Reaction::mouseButtonPressed(sf::RenderWindow& _win) {
         }
     }
     else {
+        // a self locking if statement that grabs the time 
         if (flag == true) {
             ButtonImage.setPosition(-100, -100);
             fakeButtonImage.setPosition(-100, -100);
