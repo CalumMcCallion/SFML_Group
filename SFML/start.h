@@ -20,6 +20,7 @@ public:
 	void createStartButton1(std::string _fileName);
 	void CheckStart(std::string target, std::string faketarget, std::string background);
 	void drawStart(sf::RenderWindow& _win);
+	void mouseMoved(sf::RenderWindow& _win);
 	void mouseButtonPressed(sf::RenderWindow& _win);
 
 };

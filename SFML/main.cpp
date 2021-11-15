@@ -6,7 +6,7 @@
 #include <iostream> 
 #include "Reaction.h"
 #include "start.h"
-
+//credit: Mr Smith - Americana  FMA
 int main()
 {
     // set the width and height so i can grab them vaules later
@@ -30,12 +30,7 @@ int main()
             
         
         if (start.ReactionStart == true && starting == true) {
-          /*  reaction.createButton("target1.png");
-            reaction.createbackground("background.png");
-            reaction.createFakeButton("faketarget.png");  
-            reaction.loadBackgroundMusic("Mr Smith - Americana.wav");
-            reaction.PlayMusic();
-            reaction.LoadSound("gunshot.wav");*/
+          // loads reaction game's assets
             reaction.startGame();
             start.ReactionStart == false;
             starting = false;
@@ -50,16 +45,19 @@ int main()
                 break;
             case sf::Event::MouseMoved:
             {
-                
+                // shows the user highlighted button
+                start.mouseMoved(window);
+
+                //show the user highlighted target
                 reaction.mouseMoved(window);
             }
             break;
             case sf::Event::MouseButtonPressed:
             {
-
+                // allows user to play game through making starting == true
                 start.mouseButtonPressed(window);
 
-                
+                // allows user to hit target and adds points ort takes them away
                    reaction.mouseButtonPressed(window);
                 
                 
@@ -75,7 +73,9 @@ int main()
 
 
         window.clear();
+        // draws start menu
         start.drawStart(window);
+        // allows reaction game to draw
         reaction.drawgame(window);
         window.display();
 

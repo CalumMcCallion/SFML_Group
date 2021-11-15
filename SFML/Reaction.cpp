@@ -6,6 +6,7 @@
 #include <iostream> 
 #include "Reaction.h"
 
+//--------------------------------------------------------creates assets-------------------------------------------
 void Reaction::createButton(std::string _fileName) {
     if (!Button.loadFromFile(_fileName))
         std::cout << "Can't find the image" << std::endl;
@@ -83,6 +84,7 @@ void Reaction::PlayMusic() {
 
 }
 
+//--------------------------------------Loads assets------------------------------------------------
 void Reaction::startGame(){
     createButton("target1.png");
     createbackground("background.png");
@@ -92,6 +94,8 @@ void Reaction::startGame(){
     LoadSound("gunshot.wav");
 
 }
+
+//-------------------------------------- mouse funtions---------------------------------------------------
 void Reaction::mouseMoved(sf::RenderWindow& _win) {
     // getting pos of mouse
     sf::Vector2i mousePos = sf::Mouse::getPosition(_win);
@@ -170,7 +174,7 @@ void Reaction::mouseButtonPressed(sf::RenderWindow& _win) {
 
 
 
-
+//--------------------------draw game-------------------------------------------
 void Reaction::drawgame(sf::RenderWindow& _win) {
 
 

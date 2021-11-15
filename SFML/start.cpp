@@ -15,6 +15,25 @@ void start::createStartButton1(std::string _fileName) {
     startButtonImage.setPosition(0,0);
 };
 
+
+void start::mouseMoved(sf::RenderWindow& _win) {
+    // getting pos of mouse
+    sf::Vector2i mousePos = sf::Mouse::getPosition(_win);
+    // changing the pos to be a Vector2f not a Vector2i
+    sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+
+    //if button isn't hovered over have it be white while hover be red (for testing if the bounderys are created can be removed later)
+    if (startButtonImage.getGlobalBounds().contains(mousePosF))
+    {
+        startButtonImage.setColor(sf::Color(220, 220, 220));
+    }
+    else
+    {
+        startButtonImage.setColor(sf::Color(255, 255, 255));
+    }
+
+};
+
 void start::CheckStart(std::string target, std::string faketarget, std::string background) {
     if (ReactionStart == true ) {
         reaction.createButton(target);
