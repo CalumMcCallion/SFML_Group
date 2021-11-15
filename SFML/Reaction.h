@@ -18,6 +18,9 @@ private:
 	sf::Sprite fakeButtonImage;
 	sf::Texture background;
 	sf::Sprite backgroundImage;
+	sf::SoundBuffer buffer;
+	sf::Sound sound;
+	sf::Music music;
 	
 	sf::Event Event;
 	bool flag = true;
@@ -32,9 +35,18 @@ public:
 	sf::Time elapsed2;
 	sf::Text text;
 	sf::Font font;
+	sf::Clock TimerS;
+
 	void createButton(std::string _fileName);
 	void createFakeButton(std::string _fileName);
 	void createbackground(std::string _fileName);
+	void createStartButton1(std::string _fileName);
+	void soundDelay(int ms);
+	void LoadSound(std::string gunshot);
+	void loadBackgroundMusic(std::string music);
+	void PlayMusic();
+	void PlaySound();
+	void startGame();
 	void mouseMoved(sf::RenderWindow& _win);
 	void mouseButtonPressed(sf::RenderWindow& _win);
 	void drawgame(sf::RenderWindow& _win);

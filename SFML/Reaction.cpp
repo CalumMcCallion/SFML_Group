@@ -13,14 +13,21 @@ void Reaction::createButton(std::string _fileName) {
     ButtonImage.setPosition(850, 350);
 };
 
+void Reaction::createStartButton1(std::string _fileName) {
+    if (!Button.loadFromFile(_fileName))
+        std::cout << "Can't find the image" << std::endl;
+    ButtonImage.setTexture(Button);
+    
+};
+
 void Reaction::creacteEndText(float time) {
-    if (!font.loadFromFile("arial.ttf"))
+    if (!font.loadFromFile("Pixel Cowboy.otf"))
     {
         // error...
     }
     text.setFont(font);   text.setCharacterSize(30);  text.setFillColor(sf::Color::Black); text.setStyle(sf::Text::Bold | sf::Text::Underlined);
     text.setString("points: " + std::to_string(points) + "\n" + "timer: " + std::to_string(time));
-    text.setPosition(850, 350);
+    text.setPosition(759, 250);
 };
 
 void Reaction::createFakeButton(std::string _fileName) {
@@ -38,6 +45,53 @@ void Reaction::createbackground(std::string _fileName) {
 
 };
 
+void Reaction::soundDelay(int ms){
+    while (TimerS.getElapsedTime().asMilliseconds() < ms);
+}
+
+void Reaction::loadBackgroundMusic(std::string music) {
+    if (!buffer.loadFromFile(music))
+    {
+        std::cerr << "Error while loading sound file" << std::endl;
+
+    }
+    
+    //"Mr Smith - Americana.mp3"
+}
+
+void Reaction::LoadSound(std::string gunshot) {
+    
+    if (!buffer.loadFromFile(gunshot))
+    {
+        std::cerr << "Error while loading sound file" << std::endl;
+        
+    }
+
+}
+
+void Reaction::PlaySound() {
+    sound.setBuffer(buffer);
+    sound.play();
+    soundDelay(1500);
+
+}
+
+void Reaction::PlayMusic() {
+    sound.setBuffer(buffer);
+    music.play();
+    soundDelay(1500);
+
+}
+
+void Reaction::startGame(){
+    createButton("target1.png");
+    createbackground("background.png");
+    createFakeButton("faketarget.png");
+    loadBackgroundMusic("Mr Smith - Americana.wav");
+    PlayMusic();
+    LoadSound("gunshot.wav");
+
+}
 void Reaction::mouseMoved(sf::RenderWindow& _win) {
     // getting pos of mouse
     sf::Vector2i mousePos = sf::Mouse::getPosition(_win);
@@ -58,7 +112,7 @@ void Reaction::mouseMoved(sf::RenderWindow& _win) {
 
 void Reaction::mouseButtonPressed(sf::RenderWindow& _win) {
 
-    if (count != 20 && flag == true) {
+    if (count != 21 && flag == true) {
 
 
         sf::Vector2i mousePos = sf::Mouse::getPosition(_win);
@@ -93,7 +147,7 @@ void Reaction::mouseButtonPressed(sf::RenderWindow& _win) {
             //changes pos of button
             ButtonImage.setPosition(randNumX, randNumY);
 
-
+            PlaySound();
             points = points + 1;
 
         }
@@ -101,6 +155,7 @@ void Reaction::mouseButtonPressed(sf::RenderWindow& _win) {
     else {
         if (flag == true) {
             ButtonImage.setPosition(-100, -100);
+            fakeButtonImage.setPosition(-100, -100);
             sf::Time elapsed2 = clock1.getElapsedTime();
             creacteEndText(elapsed2.asSeconds());
             std::cout << "time elapsed: " << elapsed2.asSeconds() << std::endl;
@@ -123,6 +178,7 @@ void Reaction::drawgame(sf::RenderWindow& _win) {
     _win.draw(backgroundImage);
     _win.draw(ButtonImage);
     _win.draw(fakeButtonImage);
+    _win.draw(text);
 
 
 

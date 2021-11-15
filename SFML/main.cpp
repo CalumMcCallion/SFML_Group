@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream> 
 #include "Reaction.h"
+#include "start.h"
 
 int main()
 {
@@ -14,13 +15,31 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode(width, height), "reaction Game", sf::Style::Default);
     Reaction reaction;
-    reaction.createButton("target1.png");
-    reaction.createbackground("background.png");
-    reaction.createFakeButton("faketarget.png");
+    start start;
+    bool starting = true;
+    bool other = true;
+    
+    start.createStartButton1("title.PNG");
     // creating the see for the radom number generater
     srand(time(NULL));
     while (window.isOpen())
     {
+        
+            
+            
+            
+        
+        if (start.ReactionStart == true && starting == true) {
+          /*  reaction.createButton("target1.png");
+            reaction.createbackground("background.png");
+            reaction.createFakeButton("faketarget.png");  
+            reaction.loadBackgroundMusic("Mr Smith - Americana.wav");
+            reaction.PlayMusic();
+            reaction.LoadSound("gunshot.wav");*/
+            reaction.startGame();
+            start.ReactionStart == false;
+            starting = false;
+        }
         sf::Event Event;
         while (window.pollEvent(Event))
         {
@@ -31,30 +50,33 @@ int main()
                 break;
             case sf::Event::MouseMoved:
             {
+                
                 reaction.mouseMoved(window);
             }
             break;
             case sf::Event::MouseButtonPressed:
             {
-                reaction.mouseButtonPressed(window);
+
+                start.mouseButtonPressed(window);
+
+                
+                   reaction.mouseButtonPressed(window);
+                
+                
 
             }
             break;
             }
 
-            if (!reaction.font.loadFromFile("arial.ttf"))
-            {
-                // error...
-            }
-
+            
 
         }
 
 
 
         window.clear();
+        start.drawStart(window);
         reaction.drawgame(window);
-        window.draw(reaction.text);
         window.display();
 
     }
