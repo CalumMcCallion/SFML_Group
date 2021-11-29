@@ -32,7 +32,9 @@ private:
 	int width = 1700;
 	int height = 703;
 
-
+	int num = ((int)rand() % 2);
+	double x = ((double)rand() / RAND_MAX) * 0.09 + 0.01;
+	double y = ((double)rand() / RAND_MAX) * 0.09 + 0.01;
 public:
 
 	int count = 0;
@@ -54,6 +56,7 @@ public:
 	void PlaySound();
 	void startGame();
 	void mouseMoved(sf::RenderWindow& _win);
+	void Moved(sf::RenderWindow& _win);
 	void mouseButtonPressed(sf::RenderWindow& _win);
 	void drawgame(sf::RenderWindow& _win);
 	void creacteEndText(float time);

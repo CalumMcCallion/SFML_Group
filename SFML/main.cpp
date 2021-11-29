@@ -46,6 +46,7 @@ int main()
         sf::Event Event;
         while (window.pollEvent(Event))
         {
+            reaction.Moved(window);
             switch (Event.type)
             {
             case sf::Event::Closed:

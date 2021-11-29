@@ -32,6 +32,7 @@ void Reaction::creacteEndText(float time) {
     text.setFont(font);   text.setCharacterSize(30);  text.setFillColor(sf::Color::Black); text.setStyle(sf::Text::Bold | sf::Text::Underlined);
     text.setString("points: " + std::to_string(points) + "\n" + "timer: " + std::to_string(time));
     text.setPosition(759, 250);
+    text.getCharacterSize();
 
     // createStartButton1("title.PNG");
 };
@@ -102,7 +103,7 @@ void Reaction::startGame() {
     createButton("target1.png");
     createbackground("background2.png");
     createFakeButton("faketarget.png");
-    loadBackgroundMusic("Mr Smith - Americana.wav");
+    loadBackgroundMusic("Mr Smith - Americana2.wav");
     PlayMusic();
    LoadSound("gunshot.wav");
     clock.restart();
@@ -125,6 +126,18 @@ void Reaction::mouseMoved(sf::RenderWindow& _win) {
         ButtonImage.setColor(sf::Color(255, 255, 255));
     }
 
+};
+
+void Reaction::Moved(sf::RenderWindow& _win) {
+    if (num == 1) {
+        ButtonImage.setPosition(ButtonImage.getPosition().x + x, ButtonImage.getPosition().y + y);
+
+    }
+    else {
+        ButtonImage.setPosition(ButtonImage.getPosition().x - x, ButtonImage.getPosition().y - y);
+    }
+    
+    
 };
 //-------------------------------------- mouse click funtions---------------------------------------------------
 void Reaction::mouseButtonPressed(sf::RenderWindow& _win) {
@@ -167,7 +180,9 @@ void Reaction::mouseButtonPressed(sf::RenderWindow& _win) {
 
             PlaySound();
             points = points + 1;
-
+            num = ((int)rand() % 2);
+            x = ((double)rand() / RAND_MAX) * 0.09 + 0.01;
+            y = ((double)rand() / RAND_MAX) * 0.09 + 0.01;
         }
     }
     else {
@@ -184,6 +199,8 @@ void Reaction::mouseButtonPressed(sf::RenderWindow& _win) {
         }
     }
 
+     
+    
     count = count + 1;
 };
 
