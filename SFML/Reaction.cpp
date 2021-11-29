@@ -14,21 +14,26 @@ void Reaction::createButton(std::string _fileName) {
     ButtonImage.setPosition(850, 350);
 };
 
-void Reaction::createStartButton1(std::string _fileName) {
-    if (!Button.loadFromFile(_fileName))
+
+
+/*void Reaction::createStartButton1(std::string _fileName) {
+    if (!REButton.loadFromFile(_fileName))
         std::cout << "Can't find the image" << std::endl;
-    ButtonImage.setTexture(Button);
-    
-};
+    REButtonImage.setTexture(REButton);
+
+};*/
 
 void Reaction::creacteEndText(float time) {
     if (!font.loadFromFile("Pixel Cowboy.otf"))
     {
         // error...
     }
+
     text.setFont(font);   text.setCharacterSize(30);  text.setFillColor(sf::Color::Black); text.setStyle(sf::Text::Bold | sf::Text::Underlined);
     text.setString("points: " + std::to_string(points) + "\n" + "timer: " + std::to_string(time));
     text.setPosition(759, 250);
+
+    // createStartButton1("title.PNG");
 };
 
 void Reaction::createFakeButton(std::string _fileName) {
@@ -46,7 +51,7 @@ void Reaction::createbackground(std::string _fileName) {
 
 };
 
-void Reaction::soundDelay(int ms){
+void Reaction::soundDelay(int ms) {
     while (TimerS.getElapsedTime().asMilliseconds() < ms);
 }
 
@@ -56,16 +61,16 @@ void Reaction::loadBackgroundMusic(std::string music) {
         std::cerr << "Error while loading sound file" << std::endl;
 
     }
-    
+
     //"Mr Smith - Americana.mp3"
 }
 
 void Reaction::LoadSound(std::string gunshot) {
-    
+
     if (!buffer.loadFromFile(gunshot))
     {
         std::cerr << "Error while loading sound file" << std::endl;
-        
+
     }
 
 }
@@ -85,9 +90,9 @@ void Reaction::PlayMusic() {
 }
 
 //--------------------------------------Loads assets------------------------------------------------
-void Reaction::startGame(){
+void Reaction::startGame() {
     createButton("target1.png");
-    createbackground("background.png");
+    createbackground("background2.png");
     createFakeButton("faketarget.png");
     loadBackgroundMusic("Mr Smith - Americana.wav");
     PlayMusic();
@@ -174,6 +179,26 @@ void Reaction::mouseButtonPressed(sf::RenderWindow& _win) {
     count = count + 1;
 };
 
+/*bool Reaction::REmouseButtonPressed(sf::RenderWindow& _win) {
+
+
+
+
+        sf::Vector2i mousePos = sf::Mouse::getPosition(_win);
+        sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+        // fake button so if hit take away point
+
+        if (REButtonImage.getGlobalBounds().contains(mousePosF))
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+
+
+};*/
 
 
 //--------------------------draw game-------------------------------------------
@@ -185,6 +210,7 @@ void Reaction::drawgame(sf::RenderWindow& _win) {
     _win.draw(ButtonImage);
     _win.draw(fakeButtonImage);
     _win.draw(text);
+    //  _win.draw(REButtonImage);
 
 
 

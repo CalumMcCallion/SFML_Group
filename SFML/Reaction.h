@@ -11,24 +11,27 @@ class Reaction
 {
 private:
 	sf::Clock clock; // starts the clock
-	
+
 	sf::Texture Button;
 	sf::Sprite ButtonImage;
 	sf::Texture fakeButton;
 	sf::Sprite fakeButtonImage;
 	sf::Texture background;
 	sf::Sprite backgroundImage;
+	//sf::Texture REButton;
+	//sf::Sprite REButtonImage;
 	sf::SoundBuffer buffer;
 	sf::Sound sound;
 	sf::Music music;
-	
+
 	sf::Event Event;
 	bool flag = true;
 	int width = 1700;
 	int height = 703;
-	
+
 
 public:
+
 	int count = 0;
 	int points = 0;
 	sf::Clock clock1;
@@ -40,7 +43,7 @@ public:
 	void createButton(std::string _fileName);
 	void createFakeButton(std::string _fileName);
 	void createbackground(std::string _fileName);
-	void createStartButton1(std::string _fileName);
+	//void createStartButton1(std::string _fileName);
 	void soundDelay(int ms);
 	void LoadSound(std::string gunshot);
 	void loadBackgroundMusic(std::string music);
@@ -51,5 +54,6 @@ public:
 	void mouseButtonPressed(sf::RenderWindow& _win);
 	void drawgame(sf::RenderWindow& _win);
 	void creacteEndText(float time);
-	
+	//bool REmouseButtonPressed(sf::RenderWindow& _win);
+
 };

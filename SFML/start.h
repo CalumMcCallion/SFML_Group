@@ -14,7 +14,7 @@ private:
 
 
 public:
-	
+
 	bool ReactionStart = false;
 	bool starting = true;
 	void createStartButton1(std::string _fileName);

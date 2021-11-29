@@ -12,7 +12,7 @@ void start::createStartButton1(std::string _fileName) {
     if (!startButton.loadFromFile(_fileName))
         std::cout << "Can't find the image" << std::endl;
     startButtonImage.setTexture(startButton);
-    startButtonImage.setPosition(0,0);
+    startButtonImage.setPosition(0, 0);
 };
 
 
@@ -35,11 +35,11 @@ void start::mouseMoved(sf::RenderWindow& _win) {
 };
 
 void start::CheckStart(std::string target, std::string faketarget, std::string background) {
-    if (ReactionStart == true ) {
+    if (ReactionStart == true) {
         reaction.createButton(target);
         reaction.createbackground(faketarget);
         reaction.createFakeButton(background);
-        ReactionStart =false;
+        ReactionStart = false;
     }
 }
 
