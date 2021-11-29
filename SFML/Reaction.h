@@ -20,8 +20,11 @@ private:
 	sf::Sprite backgroundImage;
 	//sf::Texture REButton;
 	//sf::Sprite REButtonImage;
-	sf::SoundBuffer buffer;
-	sf::Sound sound;
+	
+	sf::SoundBuffer buffer1;
+	sf::SoundBuffer buffer2;
+	sf::Sound sound1;
+	sf::Sound sound2;
 	sf::Music music;
 
 	sf::Event Event;

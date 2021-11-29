@@ -51,39 +51,47 @@ void Reaction::createbackground(std::string _fileName) {
 
 };
 
+
+//============================================= sounds =====================================================
 void Reaction::soundDelay(int ms) {
     while (TimerS.getElapsedTime().asMilliseconds() < ms);
 }
 
-void Reaction::loadBackgroundMusic(std::string music) {
-    if (!buffer.loadFromFile(music))
+//1
+void Reaction::loadBackgroundMusic(std::string musicN) {
+    if (!music.openFromFile(musicN))
     {
         std::cerr << "Error while loading sound file" << std::endl;
 
     }
+    
+    
 
     //"Mr Smith - Americana.mp3"
 }
 
+//2
 void Reaction::LoadSound(std::string gunshot) {
 
-    if (!buffer.loadFromFile(gunshot))
+    if (!buffer1.loadFromFile(gunshot))
     {
         std::cerr << "Error while loading sound file" << std::endl;
 
     }
 
-}
 
+
+}
+//3
 void Reaction::PlaySound() {
-    sound.setBuffer(buffer);
-    sound.play();
+    sound1.setBuffer(buffer1);
+    sound1.play();
     soundDelay(1500);
 
 }
-
+//4
 void Reaction::PlayMusic() {
-    sound.setBuffer(buffer);
+    sound2.setBuffer(buffer2);
     music.play();
     soundDelay(1500);
 
@@ -96,7 +104,7 @@ void Reaction::startGame() {
     createFakeButton("faketarget.png");
     loadBackgroundMusic("Mr Smith - Americana.wav");
     PlayMusic();
-    LoadSound("gunshot.wav");
+   LoadSound("gunshot.wav");
     clock.restart();
 }
 

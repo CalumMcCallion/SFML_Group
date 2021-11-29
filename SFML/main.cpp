@@ -13,8 +13,8 @@ int y = sf::VideoMode::getDesktopMode().height;
 
 int main()
 {
-    std::cout << "time elapsed: " << x << std::endl;
-    std::cout << "time elapsed: " << y << std::endl;
+    std::cout << "screen width: " << x << std::endl;
+    std::cout << "Screen height " << y << std::endl;
     // set the width and height so i can grab them vaules later
     int width = 1700;
     int height = 703;
@@ -24,6 +24,8 @@ int main()
     start start;
     bool starting = true;
     bool other = true;
+
+
 
     start.createStartButton1("title.PNG");
     // creating the see for the radom number generater
