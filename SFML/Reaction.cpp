@@ -129,12 +129,28 @@ void Reaction::mouseMoved(sf::RenderWindow& _win) {
 };
 
 void Reaction::Moved(sf::RenderWindow& _win) {
+    if (flag == true) {
+
+    
+    
+    if (ButtonImage.getPosition().y <= 0 || ButtonImage.getPosition().y >= 950) {
+        y = 0;
+
+    }
+    else if (ButtonImage.getPosition().x <= 0 || ButtonImage.getPosition().x >= _win.getSize().x) {
+        x = 0;
+    }
+    
+    
+    
     if (num == 1) {
         ButtonImage.setPosition(ButtonImage.getPosition().x + x, ButtonImage.getPosition().y + y);
 
     }
     else {
         ButtonImage.setPosition(ButtonImage.getPosition().x - x, ButtonImage.getPosition().y - y);
+    }
+
     }
     
     

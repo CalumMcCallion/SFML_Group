@@ -19,7 +19,8 @@ int main()
     int width = 1700;
     int height = 703;
 
-    sf::RenderWindow window(sf::VideoMode(x, y), "reaction Game", sf::Style::Default);
+    sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
+    sf::RenderWindow window(sf::VideoMode(desktopMode.width, desktopMode.height, desktopMode.bitsPerPixel), "Mini Games", sf::Style::Fullscreen);
     Reaction reaction;
     start start;
     bool starting = true;
@@ -47,6 +48,8 @@ int main()
         while (window.pollEvent(Event))
         {
             reaction.Moved(window);
+
+
             switch (Event.type)
             {
             case sf::Event::Closed:
@@ -59,6 +62,12 @@ int main()
 
                 //show the user highlighted target
                 reaction.mouseMoved(window);
+            }
+            case sf::Event::KeyPressed:
+            {
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+                    window.close();
+                }
             }
             break;
             case sf::Event::MouseButtonPressed:
