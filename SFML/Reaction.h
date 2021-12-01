@@ -18,8 +18,6 @@ private:
 	sf::Sprite fakeButtonImage;
 	sf::Texture background;
 	sf::Sprite backgroundImage;
-	//sf::Texture REButton;
-	//sf::Sprite REButtonImage;
 	
 	sf::SoundBuffer buffer1;
 	sf::SoundBuffer buffer2;
@@ -60,6 +58,6 @@ public:
 	void mouseButtonPressed(sf::RenderWindow& _win);
 	void drawgame(sf::RenderWindow& _win);
 	void creacteEndText(float time);
-	//bool REmouseButtonPressed(sf::RenderWindow& _win);
+	
 
 };

@@ -15,7 +15,7 @@ void Reaction::createButton(std::string _fileName) {
 };
 
 void Reaction::creacteEndText(float time) {
-    if (!font.loadFromFile("Pixel Cowboy.otf"))
+    if (!font.loadFromFile("text/Pixel Cowboy.otf"))
     {
         // error...
     }
@@ -25,7 +25,6 @@ void Reaction::creacteEndText(float time) {
     text.setPosition(759, 250);
     text.getCharacterSize();
 
-    // createStartButton1("title.PNG");
 };
 
 void Reaction::createFakeButton(std::string _fileName) {
@@ -91,12 +90,12 @@ void Reaction::PlayMusic() {
 
 //--------------------------------------Loads assets------------------------------------------------
 void Reaction::startGame() {
-    createButton("target1.png");
-    createbackground("background2.png");
-    createFakeButton("faketarget.png");
-    loadBackgroundMusic("Mr Smith - Americana2.wav");
+    createButton("images/target1.png");
+    createbackground("images/background2.png");
+    createFakeButton("images/faketarget.png");
+    loadBackgroundMusic("sounds/Mr Smith - Americana2.wav");
     PlayMusic();
-   LoadSound("gunshot.wav");
+   LoadSound("sounds/gunshot.wav");
     clock.restart();
 }
 
@@ -187,9 +186,10 @@ void Reaction::mouseButtonPressed(sf::RenderWindow& _win) {
 
             PlaySound();
             points = points + 1;
+            //making the image move in random directions each times
             num = ((int)rand() % 2);
-            x = ((double)rand() / RAND_MAX) * 0.09 + 0.01;
-            y = ((double)rand() / RAND_MAX) * 0.09 + 0.01;
+            x = ((double)rand() / RAND_MAX) * 0.04 + 0.01;
+            y = ((double)rand() / RAND_MAX) * 0.04 + 0.01;
         }
     }
     else {
@@ -210,28 +210,6 @@ void Reaction::mouseButtonPressed(sf::RenderWindow& _win) {
     
     count = count + 1;
 };
-
-/*bool Reaction::REmouseButtonPressed(sf::RenderWindow& _win) {
-
-
-
-
-        sf::Vector2i mousePos = sf::Mouse::getPosition(_win);
-        sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
-        // fake button so if hit take away point
-
-        if (REButtonImage.getGlobalBounds().contains(mousePosF))
-        {
-            return true;
-        }
-        else {
-            return false;
-        }
-
-
-
-};*/
-
 
 //--------------------------draw game-------------------------------------------
 void Reaction::drawgame(sf::RenderWindow& _win) {

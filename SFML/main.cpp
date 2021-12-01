@@ -28,7 +28,7 @@ int main()
 
 
 
-    start.createStartButton1("title.PNG");
+    start.createStartButton1("images/title.PNG");
     // creating the see for the radom number generater
     srand(time(NULL));
     while (window.isOpen())
@@ -72,6 +72,8 @@ int main()
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
                     goto start;
                 }
+
+                // space.keypressed(window)
             }
             break;
             case sf::Event::MouseButtonPressed:
@@ -82,11 +84,6 @@ int main()
                 // allows user to hit target and adds points ort takes them away
                 reaction.mouseButtonPressed(window);
 
-                // if (reaction.REmouseButtonPressed(window)== true) {
-               //      goto start;
-               //  }
-
-
             }
             break;
             }
@@ -94,8 +91,6 @@ int main()
 
 
         }
-
-
 
         window.clear();
         // draws start menu
