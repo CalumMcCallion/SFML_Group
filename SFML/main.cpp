@@ -18,7 +18,7 @@ int main()
     // set the width and height so i can grab them vaules later
     int width = 1700;
     int height = 703;
-
+    start:
     sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
     sf::RenderWindow window(sf::VideoMode(desktopMode.width, desktopMode.height, desktopMode.bitsPerPixel), "Mini Games", sf::Style::Fullscreen);
     Reaction reaction;
@@ -35,7 +35,7 @@ int main()
     {
 
 
-
+        reaction.Moved(window);
 
 
         if (start.ReactionStart == true && starting == true) {
@@ -47,7 +47,7 @@ int main()
         sf::Event Event;
         while (window.pollEvent(Event))
         {
-            reaction.Moved(window);
+           
 
 
             switch (Event.type)
@@ -67,6 +67,10 @@ int main()
             {
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
                     window.close();
+                }
+
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
+                    goto start;
                 }
             }
             break;

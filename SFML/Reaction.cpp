@@ -14,15 +14,6 @@ void Reaction::createButton(std::string _fileName) {
     ButtonImage.setPosition(850, 350);
 };
 
-
-
-/*void Reaction::createStartButton1(std::string _fileName) {
-    if (!REButton.loadFromFile(_fileName))
-        std::cout << "Can't find the image" << std::endl;
-    REButtonImage.setTexture(REButton);
-
-};*/
-
 void Reaction::creacteEndText(float time) {
     if (!font.loadFromFile("Pixel Cowboy.otf"))
     {
@@ -30,7 +21,7 @@ void Reaction::creacteEndText(float time) {
     }
 
     text.setFont(font);   text.setCharacterSize(30);  text.setFillColor(sf::Color::Black); text.setStyle(sf::Text::Bold | sf::Text::Underlined);
-    text.setString("points: " + std::to_string(points) + "\n" + "timer: " + std::to_string(time));
+    text.setString("points: " + std::to_string(points) + "\n" + "timer: " + std::to_string(time) + "\n" + "press R to restart game");
     text.setPosition(759, 250);
     text.getCharacterSize();
 
