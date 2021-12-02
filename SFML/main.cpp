@@ -29,6 +29,7 @@ int main()
 
 
     start.createStartButton1("images/title.PNG");
+    start.createbackground("Start Background.png");
     // creating the see for the radom number generater
     srand(time(NULL));
     while (window.isOpen())
@@ -94,7 +95,10 @@ int main()
 
         window.clear();
         // draws start menu
-        start.drawStart(window);
+        if (starting == true) {
+            start.drawStart(window);
+        }
+        
         // allows reaction game to draw
         reaction.drawgame(window);
         window.display();

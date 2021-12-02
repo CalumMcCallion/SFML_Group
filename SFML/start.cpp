@@ -12,9 +12,17 @@ void start::createStartButton1(std::string _fileName) {
     if (!startButton.loadFromFile(_fileName))
         std::cout << "Can't find the image" << std::endl;
     startButtonImage.setTexture(startButton);
-    startButtonImage.setPosition(0, 0);
+    startButtonImage.setPosition(400, 320);
+    startButtonImage.setScale(0.47,0.47);
 };
+void start::createbackground(std::string _fileName) {
+    // grabbing an image for the background
+    if (!background.loadFromFile(_fileName))
+        std::cout << "Can't find the image" << std::endl;
 
+    backgroundImage.setTexture(background);
+
+};
 
 void start::mouseMoved(sf::RenderWindow& _win) {
     // getting pos of mouse
@@ -44,7 +52,9 @@ void start::CheckStart(std::string target, std::string faketarget, std::string b
 }
 
 void start::drawStart(sf::RenderWindow& _win) {
+    _win.draw(backgroundImage);
     _win.draw(startButtonImage);
+    
 };
 
 void start::mouseButtonPressed(sf::RenderWindow& _win) {
@@ -55,5 +65,6 @@ void start::mouseButtonPressed(sf::RenderWindow& _win) {
         ReactionStart = true;
         starting = false;
         startButtonImage.setPosition(-10000, -10000);
+        backgroundImage.setPosition(-10000, -10000);
     }
 }
