@@ -6,6 +6,7 @@
 #include <iostream> 
 #include "Reaction.h"
 #include "start.h"
+#include "space.h"
 //credit: Mr Smith - Americana  FMA
 int x = sf::VideoMode::getDesktopMode().width;
 int y = sf::VideoMode::getDesktopMode().height;
@@ -28,8 +29,13 @@ int main()
 
 
 
+    
+    start.createbackground("images/Start Background.png");
     start.createStartButton1("images/title.PNG");
-    start.createbackground("Start Background.png");
+    start.createStartButtonspace("images/calum-logo.png");
+    start.createStartButtonTetris("images/Tetris.png");
+    start.createStartButtonMine("images/Mine.png");
+
     // creating the see for the radom number generater
     srand(time(NULL));
     while (window.isOpen())
@@ -89,7 +95,9 @@ int main()
             break;
             }
 
-
+            if (start.ReStart == true) {
+                goto start;
+            }
 
         }
 

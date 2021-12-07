@@ -21,7 +21,7 @@ void Reaction::creacteEndText(float time) {
     }
 
     text.setFont(font);   text.setCharacterSize(30);  text.setFillColor(sf::Color::Black); text.setStyle(sf::Text::Bold | sf::Text::Underlined);
-    text.setString("points: " + std::to_string(points) + "\n" + "timer: " + std::to_string(time) + "\n" + "press R to restart game");
+    text.setString("points: " + std::to_string(points) +"/20" + "\n" + "timer: " + std::to_string(time) + "\n" + "press R to restart game");
     text.setPosition(759, 250);
     text.getCharacterSize();
 
