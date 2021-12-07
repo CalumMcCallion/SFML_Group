@@ -6,6 +6,9 @@
 #include <iostream> 
 #include "RPS.h"
 
+
+//================================Building block====================================
+// Mark help me with the function needed for create the window
 //the feed back that when a button is click it will genurate what did CPU has pick
 void RPS::createButton(std::string _fileName) {
     if (!Button.loadFromFile(_fileName))
@@ -32,6 +35,18 @@ void RPS::createButtonS(std::string _fileName) {
     ButtonImageS.setTexture(ButtonS);
 };
 
+
+void RPS::createbackground(std::string _fileName) {
+    // grabbing an image for the background
+    if (!background.loadFromFile(_fileName))
+        std::cout << "Can't find the image" << std::endl;
+
+    backgroundImage.setTexture(background);
+    backgroundImage.setScale(1.5,1.5);
+
+};
+
+//==============================Game Over===================================================
 void RPS::gameover() {
     if (!font.loadFromFile("fonts/arial.ttf")) {
         //error
@@ -48,24 +63,14 @@ void RPS::gameover() {
     textL.setPosition(500, 500);
 
 }
-
-void RPS::createbackground(std::string _fileName) {
-    // grabbing an image for the background
-    if (!background.loadFromFile(_fileName))
-        std::cout << "Can't find the image" << std::endl;
-
-    backgroundImage.setTexture(background);
-    backgroundImage.setScale(1.5,1.5);
-
-};
-
+//=================================Mouse Action===========================================
 void RPS::mouseMoved(sf::RenderWindow& _win) {
     // getting pos of mouse
     sf::Vector2i mousePos = sf::Mouse::getPosition(_win);
     // changing the pos to be a Vector2f not a Vector2i
     sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
 
-    //if button isn't hovered over have it be white while hover be red (for testing if the bounderys are created can be removed later)
+    //if button isn't hovered over have it be white while hover be little darker (for player to know if the mouse is on the bounderys)
     if (ButtonImage.getGlobalBounds().contains(mousePosF))
     {
         ButtonImage.setColor(sf::Color(220, 220, 220));
@@ -102,31 +107,18 @@ void RPS::mouseMoved(sf::RenderWindow& _win) {
 };
 
 void RPS::mouseButtonPressed(sf::RenderWindow& _win) {
-    //using random number to genurate the reaction for the CPU
-    //0 is Paper, 1 is Scissors and 2 is Rock
+      //0 is wand which is Paper, 1 is archery which is Scissors and 2 is Sword which is Rock 
+      
+      //using random number to genurate the reaction for the CPU
+ 
     int randNumZ = rand() % 3;
 
 
-    /*   switch (randNumZ)
-       {
-       case 0:
-           createButton("paper.png");
-           ButtonImage.setPosition(50.0f, 500.0f);
-           break;
-       case 1:
-           createButton("scissors.png");
-           ButtonImage.setPosition(50.0f, 500.0f);
-           break;
-       case 2:
-           createButton("rock.png");
-           ButtonImage.setPosition(50.0f, 500.0f);
-           break;
-       default:
-           std::cout << "error number" << std::endl;
-           break;
-       }*/
+
     sf::Vector2i mousePos = sf::Mouse::getPosition(_win);
     sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+    
+    //Three if statement to compare all the possible outcome
     if (ButtonImageR.getGlobalBounds().contains(mousePosF))
     {
         if (randNumZ == 0)
@@ -211,7 +203,7 @@ void RPS::mouseButtonPressed(sf::RenderWindow& _win) {
 };
 
 // ==========================================Text=====================================================================
-
+// Calum help me with the code to check did I set the address of the font
 // Display the Player life Point
 void RPS::displayTextL() {
     if (!font.loadFromFile("fonts/arial.ttf")) {
@@ -241,6 +233,7 @@ void RPS::displayTextR() {
 
 
 //============================================= music =====================================================
+//since that it has no error during build but it not play the music, Mark has help me with the function to let the music working 
 void RPS::soundDelay(int ms) {
     while (TimerS.getElapsedTime().asMilliseconds() < ms);
 }

@@ -24,6 +24,7 @@ void RPSS::RPSGame(sf::RenderWindow& window) {
     srand(time(NULL));
     while (window.isOpen())
     {
+    //update the life point while it's running
         rps.displayTextL();
         rps.displayTextR();
         sf::Event Event;
