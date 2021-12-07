@@ -152,11 +152,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="mine.cpp" />
     <ClCompile Include="Reaction.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="RPS.cpp" />
+    <ClCompile Include="space.cpp" />
+    <ClCompile Include="start.cpp" />
+    <ClCompile Include="Tetris.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\Downloads\CW2 Game (1)\CW2 Game\Coursework Num1 - Copy\SFML_Points-master\SFML_Test\MoveBG.h" />
+    <ClInclude Include="mine.h" />
     <ClInclude Include="Reaction.h" />
+    <ClInclude Include="RPS.h" />
+    <ClInclude Include="space.h" />
+    <ClInclude Include="start.h" />
+    <ClInclude Include="Tetris.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
