@@ -156,6 +156,7 @@
     <ClCompile Include="Reaction.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RPS.cpp" />
+    <ClCompile Include="RPSS.cpp" />
     <ClCompile Include="space.cpp" />
     <ClCompile Include="start.cpp" />
     <ClCompile Include="Tetris.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="mine.h" />
     <ClInclude Include="Reaction.h" />
     <ClInclude Include="RPS.h" />
+    <ClInclude Include="RPSS.h" />
     <ClInclude Include="space.h" />
     <ClInclude Include="start.h" />
     <ClInclude Include="Tetris.h" />

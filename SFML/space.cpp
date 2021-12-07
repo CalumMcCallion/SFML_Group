@@ -433,6 +433,7 @@ start:
 
         //closes program once user presses the ESC key
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+            goto start;
             //Window.close();
           break;
         }
@@ -455,6 +456,7 @@ start:
                 gameOverSound.stop();
             }
             
+            // Mark helped with this 
             sf::Time delta_time = sf::milliseconds(100);
             elapsed_time = r.restart();
             if(elapsed_time >= delta_time){
@@ -463,16 +465,6 @@ start:
            
            // sf::sleep(sf::milliseconds(1500));
         }
-
-        /*int count = 0;
-        count += 1;
-        if (count > 0) {
-            count += 1;
-            if (count < 1000) {
-                gameOverSound.play();
-            }
-        }
-        */
 
 
         //draws the aspects of the game

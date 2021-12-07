@@ -17,6 +17,8 @@ private:
 	sf::Sprite startButtonTetrisImage;
 	sf::Texture startButtonMine;
 	sf::Sprite startButtonMineImage;
+	sf::Texture startButtonRPS;
+	sf::Sprite startButtonRPSImage;
 	sf::Texture background;
 	sf::Sprite backgroundImage;
 
@@ -31,6 +33,7 @@ public:
 	void createStartButtonspace(std::string _fileName);
 	void createStartButtonTetris(std::string _fileName);
 	void createStartButtonMine(std::string _fileName);
+	void createStartButtonRPS(std::string _fileName);
 	void CheckStart(std::string target, std::string faketarget, std::string background);
 	void drawStart(sf::RenderWindow& _win);
 	void mouseMoved(sf::RenderWindow& _win);

@@ -20,8 +20,11 @@ int main()
     int width = 1700;
     int height = 703;
     start:
+    
+    //
     sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
     sf::RenderWindow window(sf::VideoMode(desktopMode.width, desktopMode.height, desktopMode.bitsPerPixel), "Mini Games", sf::Style::Fullscreen);
+    
     Reaction reaction;
     start start;
     bool starting = true;
@@ -35,6 +38,8 @@ int main()
     start.createStartButtonspace("images/calum-logo.png");
     start.createStartButtonTetris("images/Tetris.png");
     start.createStartButtonMine("images/Mine.png");
+    start.createStartButtonRPS("images/RPS-brand.png");
+    //RPS - brand.png
 
     // creating the see for the radom number generater
     srand(time(NULL));

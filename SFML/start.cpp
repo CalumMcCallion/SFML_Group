@@ -9,10 +9,12 @@
 #include "space.h"
 #include "Tetris.h"
 #include "mine.h"
-
+#include "RPSS.h"
 Reaction reaction;
 space Space;
 Tetris tetris;
+mine Mine;
+RPSS rps;
 //============================================================ creating starting Buttons ==================================
 //reactions
 void start::createStartButton1(std::string _fileName){
@@ -43,8 +45,18 @@ void start::createStartButtonMine(std::string _fileName) {
         std::cout << "Can't find the image" << std::endl;
     startButtonMineImage.setTexture(startButtonMine);
     startButtonMineImage.setPosition(400, 700);
-    startButtonMineImage.setScale(0.47, 0.47);
+    startButtonMineImage.setScale(0.47, 0.4);
 };
+
+void start::createStartButtonRPS(std::string _fileName) {
+    if (!startButtonRPS.loadFromFile(_fileName))
+        std::cout << "Can't find the image" << std::endl;
+    startButtonRPSImage.setTexture(startButtonRPS);
+    startButtonRPSImage.setPosition(400, 800);
+    startButtonRPSImage.setScale(0.47, 0.4);
+};
+
+
 //===========================================================Creating background===============================================
 void start::createbackground(std::string _fileName) {
     // grabbing an image for the background
@@ -104,6 +116,15 @@ void start::mouseMoved(sf::RenderWindow& _win) {
     {
         startButtonMineImage.setColor(sf::Color(255, 255, 255));
     }
+    //highlights RPS start
+    if (startButtonRPSImage.getGlobalBounds().contains(mousePosF))
+    {
+        startButtonRPSImage.setColor(sf::Color(220, 220, 220));
+    }
+    else
+    {
+        startButtonRPSImage.setColor(sf::Color(255, 255, 255));
+    }
 };
 
 //============================================================ when mouse clicked ==============================================
@@ -118,6 +139,7 @@ void start::mouseButtonPressed(sf::RenderWindow& _win) {
         startButtonspaceImage.setPosition(-10000, -10000);
         startButtonTetrisImage.setPosition(-10000, -10000);
         startButtonMineImage.setPosition(-10000, -10000);
+        startButtonRPSImage.setPosition(-10000, -10000);
         backgroundImage.setPosition(-10000, -10000);
         
     }
@@ -132,6 +154,19 @@ void start::mouseButtonPressed(sf::RenderWindow& _win) {
         ReStart = true;
 
     }
+    else if (startButtonMineImage.getGlobalBounds().contains(mousePosF)) {
+        sf::sleep(sf::milliseconds(300));
+        Mine.mineGame(_win);
+        
+
+    }
+    else if (startButtonRPSImage.getGlobalBounds().contains(mousePosF)) {
+        sf::sleep(sf::milliseconds(300));
+        rps.RPSGame(_win);
+
+
+    }
+
 
     
 }
@@ -157,5 +192,6 @@ void start::drawStart(sf::RenderWindow& _win) {
     _win.draw(startButtonspaceImage);
     _win.draw(startButtonTetrisImage);
     _win.draw(startButtonMineImage);
+    _win.draw(startButtonRPSImage);
 };
 
